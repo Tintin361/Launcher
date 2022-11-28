@@ -1,0 +1,35 @@
+﻿<Window x:Class="Culauncher.SegsFantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Culauncher"
+        mc:Ignorable="d"
+        ContentRendered="Window_ContentRendered"
+        WindowStartupLocation="CenterScreen"
+        Title="Segs Fantasy -- CULauncher ALPHA" Height="607" Width="1080" MinHeight="505" MinWidth="968">
+    <Grid>
+        <DockPanel Panel.ZIndex="3" Width="auto" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Jeux">
+                    <MenuItem Header="_Jimmy et la kète du 11 Septembre" Click="MenuItem_Click" />
+                    <MenuItem Header="_Headpat Problem"  Click="MenuItem_Click_1"/>
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+
+        <Image Source="images/Menu_Launcher_Icon.png" Stretch="Uniform" Panel.ZIndex="2" Width="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8, 30, 0, 0"/>
+        <Image Source="images/Segs/Segs_Launcher_Logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Width="642"/>
+
+
+        <TextBlock x:Name="VersionText" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="20" Foreground="Black" Margin="0, 0, 100, 80" Text="Version: " />
+        <TextBlock x:Name="SFVersionText" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="20" Foreground="Black" Margin="0, 0, 60, 80" Text="0.0.0" />
+        
+        
+        <Button Style="{DynamicResource RoundedButtonStyle1}" x:Name="PlaySegsButton" Content="Jouer au Jeu" Click="PlaySegsButton_Click" Height="60" FontSize="20" FontWeight="Bold" Foreground="#DDFFFFFF"
+                Margin="0, 0, 50, 15" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinWidth="150" Background="#882de2" Padding="10, 1, 10, 1"/>
+        <Button Style="{DynamicResource RoundedButtonStyle2}" x:Name="MoreSegsButton" Click="MoreSegsButton_Click" Content="▼" Height="60" FontSize="20" FontWeight="Bold" Foreground="#DDFFFFFF"
+                Margin="0, 0, 8, 15" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinWidth="40" Background="#882de2" Padding="10, 1, 10, 1"/>
+    </Grid>
+</Window>

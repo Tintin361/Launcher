@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icons\JK_Icon.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <FileVersion>0.0.0.2</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icons\HP_Icon.ico" />
+    <None Remove="icons\JK_Icon.ico" />
+    <None Remove="icons\SF_Icon.ico" />
+    <None Remove="images\Headpat\HP_Launcher_BG.png" />
+    <None Remove="images\Headpat\HP_Launcher_BG_blur.png" />
+    <None Remove="images\Headpat\HP_Launcher_Logo.png" />
+    <None Remove="images\Jimmy\Jimmy_Launcher_BG.png" />
+    <None Remove="images\Jimmy\Jimmy_Launcher_BG_blur.png" />
+    <None Remove="images\Jimmy\Jimmy_Launcher_Logo.png" />
+    <None Remove="images\Menu_Launcher_Icon.png" />
+    <None Remove="images\Segs\Segs_Launcher_Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icons\JK_Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\HP_Icon.ico" />
+    <Resource Include="icons\JK_Icon.ico" />
+    <Resource Include="icons\SF_Icon.ico" />
+    <Resource Include="images\Headpat\HP_Launcher_BG.png" />
+    <Resource Include="images\Headpat\HP_Launcher_BG_blur.png" />
+    <Resource Include="images\Headpat\HP_Launcher_Logo.png" />
+    <Resource Include="images\Jimmy\Jimmy_Launcher_BG.png" />
+    <Resource Include="images\Jimmy\Jimmy_Launcher_BG_blur.png" />
+    <Resource Include="images\Jimmy\Jimmy_Launcher_Logo.png" />
+    <Resource Include="images\Menu_Launcher_Icon.png" />
+    <Resource Include="images\Segs\Segs_Launcher_Logo.png" />
+  </ItemGroup>
+
+</Project>
