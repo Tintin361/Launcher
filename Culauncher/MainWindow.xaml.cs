@@ -5,6 +5,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Windows;
+using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Culauncher
 {
@@ -24,6 +26,7 @@ namespace Culauncher
     {
         private string rootPath;
         private string versionFile;
+        private string launcherVersionFile;
         private string gameZip;
         private string gameExe;
 
@@ -43,10 +46,10 @@ namespace Culauncher
                         PlayJimmyButton.Content = "Échec de la MàJ";
                         break;  
                     case LauncherStatus.downloadingGame:
-                        PlayJimmyButton.Content = "Téléchargement de la MàJ";
+                        PlayJimmyButton.Content = "Téléchargement du Jeu";
                         break;
                     case LauncherStatus.downloadingUpdate:
-                        PlayJimmyButton.Content = "Téléchargement du Jeu";
+                        PlayJimmyButton.Content = "Téléchargement de la MàJ";
                         break;
                     default:
                         break;
@@ -62,8 +65,38 @@ namespace Culauncher
 
             rootPath = Directory.GetCurrentDirectory();
             versionFile = Path.Combine(rootPath, "Version_Jimmy.txt");
+            launcherVersionFile = Path.Combine(rootPath, "Version_Culauncher.txt");
             gameZip = Path.Combine(rootPath, "Jimmy.zip");
             gameExe = Path.Combine(rootPath, "Jimmy", "Game.exe");
+        }
+
+        private void CheckForLauncherUpdates()
+        {
+            if (File.Exists(launcherVersionFile))
+            {
+                Version localVersion = new Version(File.ReadAllText(launcherVersionFile));
+
+                try
+                {
+                    WebClient webClient = new WebClient();
+                    Version onlineVersion = new Version(webClient.DownloadString("http://82.66.170.147/culauncher/Version_Culauncher.txt"));
+
+
+                    if (onlineVersion.IsDifferentThan(localVersion))
+                    {
+                        MessageBox.Show("Une Mise à Jour du Launcher est disponible !!!", "Mise à Jour");
+                    }
+                    else
+                    {
+                        Status = LauncherStatus.ready;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Status = LauncherStatus.failed;
+                    MessageBox.Show($"Erreur de vérification de la Mise à Jour du Launcher: {ex}");
+                }
+            }
         }
 
         private void CheckForUpdates()
@@ -148,6 +181,7 @@ namespace Culauncher
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
+            CheckForLauncherUpdates();
             if (File.Exists(versionFile))
             {
                 Version localVersion = new Version(File.ReadAllText(versionFile));
@@ -157,38 +191,103 @@ namespace Culauncher
 
         private void PlayJimmyButton_Click(object sender, RoutedEventArgs e)
         {
+            CheckForUpdates();
             if (File.Exists(gameExe) && Status == LauncherStatus.ready)
             {
-                
                 ProcessStartInfo startInfo = new ProcessStartInfo(gameExe);
                 startInfo.WorkingDirectory = Path.Combine(rootPath, "Jimmy");
+                startInfo.UseShellExecute = true;
+                startInfo.Verb = "runas";
                 Process.Start(startInfo);
 
                 Close();
             }
-            else if (Status == LauncherStatus.failed || Status == LauncherStatus.ready)
-            {
-                CheckForUpdates();
-            }
+            
         }
 
         private void MoreJimmyButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"More button");
+            if (MoreBorderZone.IsVisible)
+            {
+                MoreBorderZone.Visibility = Visibility.Collapsed;
+                MoreJimmyButton.Content = "▼";
+            }
+            else
+            {
+                MoreBorderZone.Visibility = Visibility.Visible;
+                MoreJimmyButton.Content = "▲";
+            }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void ShowJimmyFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists(Path.Combine(rootPath, "Jimmy")))
+            {
+                Process.Start("explorer.exe", Path.Combine(rootPath, "Jimmy"));
+            }
+            else
+            {
+                MessageBox.Show("Le jeu Jimmy et la kète du 11 Septembre n'est pas installé sur votre ordinateur.", "Erreur");
+            }
+        }
+
+        private void UninstallJimmyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists(Path.Combine(rootPath, "Jimmy")))
+            {
+                MessageBoxButton buttons = MessageBoxButton.YesNo;
+                DialogResult dialog = MessageBox.Show("Voulez-vous vraiment supprimer Jimmy et la kète du 11 Septembre ? Toutes les données seront supprimées !", "Supprimer Jimmy 11/09", (MessageBoxButtons)buttons);
+                if (dialog == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Directory.Delete(Path.Combine(rootPath, "Jimmy"), true);
+                    File.Delete(versionFile);
+                    JimmyVersionText.Text = "0.0.0";
+                }
+                else
+                {
+                }
+            }
+            else
+            {
+                MessageBox.Show("Le jeu Jimmy et la kète du 11 Septembre n'est pas installé sur votre ordinateur.", "Erreur");
+            }
+        }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuButton.Visibility = Visibility.Collapsed;
+            MenuBorderZone.Visibility = Visibility.Visible;
+            ContentGrid.Opacity = 0.5;
+            ContentGrid.IsEnabled = false;
+        }
+
+        private void ExitMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuButton.Visibility = Visibility.Visible;
+            MenuBorderZone.Visibility = Visibility.Collapsed;
+            ContentGrid.Opacity = 1;
+            ContentGrid.IsEnabled = true;
+        }
+
+        private void StackPanel_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             HeadPromWindow headPromWindow = new HeadPromWindow();
             headPromWindow.Show();
-
             Close();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void StackPanel_PreviewMouseDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SegsFantWindow segsFantWindow = new SegsFantWindow();
             segsFantWindow.Show();
+            Close();
+        }
+
+        private void StackPanel_PreviewMouseDown_2(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo("Culauncher Updater.exe");
+            processStartInfo.WorkingDirectory = rootPath;
+            Process.Start(processStartInfo);
 
             Close();
         }
@@ -236,6 +335,13 @@ namespace Culauncher
                 if (minor != _otherVersion.minor)
                 {
                     return true;
+                }
+                else
+                {
+                    if (subMinor != _otherVersion.subMinor)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

@@ -5,6 +5,9 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Windows;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Culauncher
 {
@@ -34,10 +37,10 @@ namespace Culauncher
                         PlayHeadpatButton.Content = "Échec de la MàJ";
                         break;
                     case LauncherStatus.downloadingGame:
-                        PlayHeadpatButton.Content = "Téléchargement de la MàJ";
+                        PlayHeadpatButton.Content = "Téléchargement du Jeu";
                         break;
                     case LauncherStatus.downloadingUpdate:
-                        PlayHeadpatButton.Content = "Téléchargement du Jeu";
+                        PlayHeadpatButton.Content = "Téléchargement de la MàJ";
                         break;
                     default:
                         break;
@@ -162,25 +165,102 @@ namespace Culauncher
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MoreHeadpatButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MoreBorderZone.IsVisible)
+            {
+                MoreBorderZone.Visibility = Visibility.Collapsed;
+                MoreHeadpatButton.Content = "▼";
+            }
+            else
+            {
+                MoreBorderZone.Visibility = Visibility.Visible;
+                MoreHeadpatButton.Content = "▲";
+            }
+        }
+
+        private void UninstallHeadpatButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists(Path.Combine(rootPath, "Headpat")))
+            {
+                MessageBoxButton buttons = MessageBoxButton.YesNo;
+                DialogResult dialog = MessageBox.Show("Voulez-vous vraiment supprimer Headpat Problem ? Toutes les données seront supprimées !", "Supprimer Headpat", (MessageBoxButtons)buttons);
+                if (dialog == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Directory.Delete(Path.Combine(rootPath, "Headpat"), true);
+                    File.Delete(versionFile);
+                    HeadpatVersionText.Text = "0.0.0";
+                }
+                else
+                {
+                }
+            }
+            else
+            {
+                MessageBox.Show("Le jeu Headpat Problem n'est pas installé sur votre ordinateur.", "Erreur");
+            }
+        }
+
+        private void ShowHeadpatFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists(Path.Combine(rootPath, "Headpat")))
+            {
+                Process.Start("explorer.exe", Path.Combine(rootPath, "Headpat"));
+            }
+            else
+            {
+                MessageBox.Show("Le jeu Headpat Problem n'est pas installé sur votre ordinateur.", "Erreur");
+            }
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo("Culauncher Updater.exe");
+            processStartInfo.WorkingDirectory = rootPath;
+            Process.Start(processStartInfo);
+
+            Close();
+        }
+
+        private void StackPanel_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-
             Close();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void StackPanel_PreviewMouseDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SegsFantWindow segsFantWindow = new SegsFantWindow();
             segsFantWindow.Show();
+            Close();
+        }
+
+        private void StackPanel_PreviewMouseDown_2(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo("Culauncher Updater.exe");
+            processStartInfo.WorkingDirectory = rootPath;
+            processStartInfo.UseShellExecute = true;
+            processStartInfo.Verb = "runas";
+            Process.Start(processStartInfo);
 
             Close();
         }
 
-        private void MoreHeadpatButton_Click(object sender, RoutedEventArgs e)
+        private void ExitMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"More button");
+            HeadpatMenuButton.Visibility = Visibility.Visible;
+            MenuBorderZone.Visibility = Visibility.Collapsed;
+            ContentGrid.Opacity = 1;
+            ContentGrid.IsEnabled = true;
+        }
+
+        private void HeadpatMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            HeadpatMenuButton.Visibility = Visibility.Collapsed;
+            MenuBorderZone.Visibility = Visibility.Visible;
+            ContentGrid.Opacity = 0.5;
+            ContentGrid.IsEnabled = false;
         }
     }
 }

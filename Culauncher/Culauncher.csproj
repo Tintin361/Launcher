@@ -8,12 +8,18 @@
     <ApplicationIcon>icons\JK_Icon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <FileVersion>0.0.0.2</FileVersion>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="icons\HP_Icon.ico" />
     <None Remove="icons\JK_Icon.ico" />
     <None Remove="icons\SF_Icon.ico" />
+    <None Remove="images\Exit_Launcher_Icon.png" />
     <None Remove="images\Headpat\HP_Launcher_BG.png" />
     <None Remove="images\Headpat\HP_Launcher_BG_blur.png" />
     <None Remove="images\Headpat\HP_Launcher_Logo.png" />
@@ -21,7 +27,10 @@
     <None Remove="images\Jimmy\Jimmy_Launcher_BG_blur.png" />
     <None Remove="images\Jimmy\Jimmy_Launcher_Logo.png" />
     <None Remove="images\Menu_Launcher_Icon.png" />
+    <None Remove="images\Options_Launcher_Icon.png" />
     <None Remove="images\Segs\Segs_Launcher_Logo.png" />
+    <None Remove="images\Updater_Icon.ico" />
+    <None Remove="Menu_Launcher_Icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +41,7 @@
     <Resource Include="icons\HP_Icon.ico" />
     <Resource Include="icons\JK_Icon.ico" />
     <Resource Include="icons\SF_Icon.ico" />
+    <Resource Include="images\Exit_Launcher_Icon.png" />
     <Resource Include="images\Headpat\HP_Launcher_BG.png" />
     <Resource Include="images\Headpat\HP_Launcher_BG_blur.png" />
     <Resource Include="images\Headpat\HP_Launcher_Logo.png" />
@@ -40,6 +50,9 @@
     <Resource Include="images\Jimmy\Jimmy_Launcher_Logo.png" />
     <Resource Include="images\Menu_Launcher_Icon.png" />
     <Resource Include="images\Segs\Segs_Launcher_Logo.png" />
+    <Resource Include="images\Options_Launcher_Icon.png" />
+    <Resource Include="images\Updater_Icon.ico" />
+    <Resource Include="Menu_Launcher_Icon.png" />
   </ItemGroup>
 
 </Project>
