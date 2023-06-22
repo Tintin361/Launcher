@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Culauncher": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

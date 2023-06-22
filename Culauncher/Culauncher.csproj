@@ -5,10 +5,11 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>icons\JK_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>icons/Annabelle_icon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <FileVersion>0.0.0.2</FileVersion>
+    <FileVersion>2.0</FileVersion>
     <UseWindowsForms>True</UseWindowsForms>
+    <StartupObject>Culauncher.App</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,10 +17,66 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="icons\HP_Icon.ico" />
-    <None Remove="icons\JK_Icon.ico" />
-    <None Remove="icons\SF_Icon.ico" />
+    <Compile Remove="launcher_gifs\**" />
+    <Compile Remove="launcher_videos\**" />
+    <EmbeddedResource Remove="launcher_gifs\**" />
+    <EmbeddedResource Remove="launcher_videos\**" />
+    <None Remove="launcher_gifs\**" />
+    <None Remove="launcher_videos\**" />
+    <Page Remove="launcher_gifs\**" />
+    <Page Remove="launcher_videos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="icons\account_icon.png" />
+    <None Remove="icons\Annabelle_icon.ico" />
+    <None Remove="icons\Annabelle_sprite.ico" />
+    <None Remove="icons\attention_icon.png" />
+    <None Remove="icons\bin_icon.png" />
+    <None Remove="icons\close_icon.png" />
+    <None Remove="icons\dark_mode_icon.png" />
+    <None Remove="icons\dev_icon.png" />
+    <None Remove="icons\edit_icon.png" />
+    <None Remove="icons\Exit_Launcher_Icon.png" />
+    <None Remove="icons\folder_icon.png" />
+    <None Remove="icons\gamepad_icon.png" />
+    <None Remove="icons\hidemenu_icon.png" />
+    <None Remove="icons\infos.png" />
+    <None Remove="icons\info_icon.png" />
+    <None Remove="icons\light_mode_icon.png" />
+    <None Remove="icons\link_icon.png" />
+    <None Remove="icons\login_icon.png" />
+    <None Remove="icons\Maximize.png" />
+    <None Remove="icons\maximize_icon.png" />
+    <None Remove="icons\maxim_icon.png" />
+    <None Remove="icons\menuclose_icon.png" />
+    <None Remove="icons\menu_icon.png" />
+    <None Remove="icons\Menu_Launcher_Icon.png" />
+    <None Remove="icons\minimize_icon.png" />
+    <None Remove="icons\minim_icon.png" />
+    <None Remove="icons\no_folder_icon.png" />
+    <None Remove="icons\Option.png" />
+    <None Remove="icons\pin_icon.png" />
+    <None Remove="icons\play_icon.png" />
+    <None Remove="icons\profil_icon.png" />
+    <None Remove="icons\Quit_Icon.png" />
+    <None Remove="icons\refresh_icon.png" />
+    <None Remove="icons\reload_icon.png" />
+    <None Remove="icons\saves_icon.png" />
+    <None Remove="icons\settings_icon.png" />
+    <None Remove="icons\showmenu_icon.png" />
+    <None Remove="icons\sound_off_icon.png" />
+    <None Remove="icons\sound_on_icon.png" />
+    <None Remove="icons\twitter_icon.png" />
+    <None Remove="icons\Unmaximize.png" />
+    <None Remove="icons\unmaximize_icon.png" />
+    <None Remove="icons\Updater_Icon.ico" />
+    <None Remove="icons\update_icon.png" />
+    <None Remove="icons\upload_icon.png" />
+    <None Remove="images\dev_wallpaper.png" />
+    <None Remove="images\Dialog_wallpaper.jpg" />
     <None Remove="images\Exit_Launcher_Icon.png" />
+    <None Remove="images\Headpat\Annabelle_sprite.png" />
     <None Remove="images\Headpat\HP_Launcher_BG.png" />
     <None Remove="images\Headpat\HP_Launcher_BG_blur.png" />
     <None Remove="images\Headpat\HP_Launcher_Logo.png" />
@@ -27,32 +84,150 @@
     <None Remove="images\Jimmy\Jimmy_Launcher_BG_blur.png" />
     <None Remove="images\Jimmy\Jimmy_Launcher_Logo.png" />
     <None Remove="images\Menu_Launcher_Icon.png" />
-    <None Remove="images\Options_Launcher_Icon.png" />
+    <None Remove="images\Minimize_Icon.png" />
+    <None Remove="images\Option_Launcher_Icon.png" />
+    <None Remove="images\Return_Icon.png" />
+    <None Remove="images\Segs\Black_BG.png" />
+    <None Remove="images\Segs\Damien_sprite.png" />
     <None Remove="images\Segs\Segs_Launcher_Logo.png" />
+    <None Remove="images\Segs\White_BG.png" />
     <None Remove="images\Updater_Icon.ico" />
-    <None Remove="Menu_Launcher_Icon.png" />
+    <None Remove="MainWindow.xaml~RFbe8c26.TMP" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="icons\JK_Icon.ico" />
+    <Resource Include="icons\bin_icon.png" />
+    <Resource Include="icons\dark_mode_icon.png" />
+    <Resource Include="icons\edit_icon.png" />
+    <Resource Include="icons\folder_icon.png" />
+    <Resource Include="icons\gamepad_icon.png" />
+    <Resource Include="icons\light_mode_icon.png" />
+    <Resource Include="icons\link_icon.png" />
+    <Resource Include="icons\login_icon.png" />
+    <Resource Include="icons\no_folder_icon.png" />
+    <Resource Include="icons\play_icon.png" />
+    <Resource Include="icons\reload_icon.png" />
+    <Resource Include="icons\saves_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="icons\HP_Icon.ico" />
-    <Resource Include="icons\JK_Icon.ico" />
-    <Resource Include="icons\SF_Icon.ico" />
-    <Resource Include="images\Exit_Launcher_Icon.png" />
-    <Resource Include="images\Headpat\HP_Launcher_BG.png" />
-    <Resource Include="images\Headpat\HP_Launcher_BG_blur.png" />
-    <Resource Include="images\Headpat\HP_Launcher_Logo.png" />
-    <Resource Include="images\Jimmy\Jimmy_Launcher_BG.png" />
-    <Resource Include="images\Jimmy\Jimmy_Launcher_BG_blur.png" />
-    <Resource Include="images\Jimmy\Jimmy_Launcher_Logo.png" />
-    <Resource Include="images\Menu_Launcher_Icon.png" />
-    <Resource Include="images\Segs\Segs_Launcher_Logo.png" />
-    <Resource Include="images\Options_Launcher_Icon.png" />
-    <Resource Include="images\Updater_Icon.ico" />
-    <Resource Include="Menu_Launcher_Icon.png" />
+    <PackageReference Include="Magick.NET.Core" Version="13.1.3" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\Annabelle_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\attention_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\close_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\dev_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\hidemenu_icon.png" />
+    <Resource Include="icons\info_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\maxim_icon.png" />
+    <Resource Include="icons\menuclose_icon.png" />
+    <Resource Include="icons\menu_icon.png" />
+    <Resource Include="icons\minim_icon.png" />
+    <Resource Include="icons\pin_icon.png" />
+    <Resource Include="icons\profil_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\refresh_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\settings_icon.png" />
+    <Resource Include="icons\showmenu_icon.png" />
+    <Resource Include="icons\sound_off_icon.png" />
+    <Resource Include="icons\sound_on_icon.png" />
+    <Resource Include="icons\twitter_icon.png" />
+    <Resource Include="icons\unmaximize_icon.png" />
+    <Resource Include="icons\update_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\upload_icon.png" />
+    <Resource Include="images\dev_wallpaper.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Dialog_wallpaper.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Headpat\Annabelle_sprite.png" />
+    <Resource Include="images\Headpat\HP_Launcher_BG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Headpat\HP_Launcher_BG_blur.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Headpat\HP_Launcher_Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Jimmy\Jimmy_Launcher_BG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Jimmy\Jimmy_Launcher_BG_blur.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Jimmy\Jimmy_Launcher_Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Segs\Black_BG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Segs\Damien_sprite.png" />
+    <Resource Include="images\Segs\Segs_Launcher_Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\Segs\White_BG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data\data.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="icons\Damien_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Sounds\pouf.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Sounds\pouf.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Sounds\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
